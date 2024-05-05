@@ -2,7 +2,7 @@ fn main() {
     let x = 5;                      // x comes into scope
     println!("before call: {x}"); 
     makes_copy(x);                  // x would move into the function,
-    println!("after call: {x}")     // but i32 is Copy, so it's okay to still
+    println!("after call: {x}");     // but i32 is Copy, so it's okay to still
                                     // use x afterward
 
     let s1 = String::from("hello");  // s1 comes into scope
@@ -12,9 +12,9 @@ fn main() {
 
     let s2 = gives_ownership();
    
-    println!("s2: {s2}")
-    let s3 = takes_and_gives_back(s2)
-    println!("s3: {s3}")
+    println!("s2: {s2}");
+    let s3 = takes_and_gives_back(s2);
+    println!("s3: {s3}");
     // println!("s2: {s2}") // s2 was moved to s3
 } // Here, x goes out of scope, then s. But because s's value was moved, nothing
   // special happens.
