@@ -51,15 +51,29 @@ fn struct_update_syntax() {
     let user2 = User {
         username: String::from("anotherusername"),
         ..user1 // expand rest of fields
-
     };
 
     println!("user1: {}", user1.username);
     println!("user2: {}", user2.username);
 }
 
+fn struct_derived_traits() {
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    let rect1 = Rectangle {
+        width: 30,
+        height: dbg!(20 / 2),
+    };
+    println!("rect1 is {:#?}", rect1);
+}
+
 fn main() {
     instantiating_directly();
     init_functions();
     struct_update_syntax();
+    struct_derived_traits();
 }
