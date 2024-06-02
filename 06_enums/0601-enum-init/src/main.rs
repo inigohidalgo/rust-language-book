@@ -2,7 +2,7 @@ fn enum_attached_data() {
     fn process_ip(ip: IpAddr) {
         match ip {
             IpAddr::V4(a) => {
-                println!("First part of IPv4: {}", a.1)
+                println!("First part of IPv4: {}", a[0])
             }
             IpAddr::V6(address) => {
                 println!("IPv6 addr: {}", address)
@@ -10,13 +10,20 @@ fn enum_attached_data() {
         }
     }
     enum IpAddr {
-        V4((u8, u8, u8, u8)),
+        V4([u8; 4]),
         V6(String),
     }
-    let home = IpAddr::V4((127, 0, 0, 1));
+    let home = IpAddr::V4([127, 0, 0, 1]);
     let loopback = IpAddr::V6(String::from("::1"));
-    process_ip(home);
-    process_ip(loopback);
+    
+    fn ipv4_to_string(ip: IpAddr) -> String {
+        if let IpAddr::V4(address_array) = ip {
+            let address_array: [String; 4]  = address_array.map(|x| x.to_string());
+            address_array.join(":")
+        }
+        else {String::from("")}
+    }
+    println!("ip4 as string: {}", ipv4_to_string(home))
 
 }
 
@@ -40,6 +47,7 @@ fn catch_all_patterns(){
                  //it is a way of expressing we want to ignore the value,
                  // so rust will not raise an unused variable warning
     }
+
 }
 
 fn main() {
