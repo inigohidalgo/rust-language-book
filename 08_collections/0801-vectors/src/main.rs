@@ -14,9 +14,13 @@ fn main() {
     for cell in &row {
         match cell {
             SpreadsheetCell::Int(number) => {
-                let number_str = number.to_string();
-                println!("Int cell: {}", number_str)
+                let number_incr = number + 1;
+                let number_str = number_incr.to_string();
+                println!("Int cell incremented: {}", number_str)
             },
+            SpreadsheetCell::Text(text) => {
+                println!("Cell contains string: {}", text)
+            }
             _ => (),
         }
 
